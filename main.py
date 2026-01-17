@@ -30,7 +30,7 @@ def all_station(station):
 def yearly(station1,year):
     filename = pd.read_csv("data_small/TG_STAID" + str(station1).zfill(6) + ".txt", skiprows=20)
     filename["    DATE"] = filename["    DATE"].astype(str)
-    result = filename["    DATE"].str.startswith(str(year)).to_dict()
+    result = filename[filename["    DATE"].str.startswith(str(year))].to_dict(orient = "records")
     print(result)
     return result
 if __name__ == "__main__":
